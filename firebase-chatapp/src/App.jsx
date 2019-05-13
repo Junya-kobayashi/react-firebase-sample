@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
-import { firebaseDB } from './firebase.js'
+import { firebaseDB } from './firebase/index.js'
 import Message from './components/Message'
 import ChatBox from './components/ChatBox'
 
@@ -30,7 +30,7 @@ class App extends Component {
       })
     } else if (e.target.name == 'text') {
       this.setState({
-        "text": e.target.value;
+        "text": e.target.value,
       })
     }
   }
@@ -53,7 +53,7 @@ class App extends Component {
   componentWillMount() {
     messageRef.on('child_added', (snapshot) => {
       const m = snapshot.val();
-      let mesgs = this.state.messages
+      let msgs = this.state.messages
 
       msgs.push({
         'text': m.text,
