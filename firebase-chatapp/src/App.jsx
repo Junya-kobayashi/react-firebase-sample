@@ -50,6 +50,23 @@ class App extends Component {
 
   }
 
+  componentWillMount() {
+    messageRef.on('child_added', (snapshot) => {
+      const m = snapshot.val();
+      let mesgs = this.state.messages
+
+      msgs.push({
+        'text': m.text,
+        'user_name': m.user_name,
+        'profile_image': m.profile_image,
+      })
+
+      this.setState({
+         messages: msgs
+      })
+    })
+  }
+
   render() {
     return (
       <div className="App">
